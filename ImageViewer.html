@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Viewer</title>
+	<style class="cp-pen-styles" data-css-polyfilled="true">
+
+/* Layout */
+
+/* Multicolumns and breaks handling */
+
+@media (min-width: 576px) {
+  .container {
+    -webkit-columns: 3;
+            columns: 3;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    -webkit-columns: 4;
+            columns: 4;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    -webkit-columns: 5;
+            columns: 5;
+  }
+}
+.container img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+
+
+/* Decoration */
+
+* {box-sizing: border-box}
+body {
+  margin: 2rem;
+  background: #fff;
+  font-family: arial, sans-serif;
+  font-size: 1.2em;
+}
+
+.container, .container > img {
+  padding: 10px;
+  color: #fff;
+}
+.container > img {
+  margin: 5px;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+
+h1, h2 {
+  margin: 0 0 1em;
+  color: #345;
+  text-align: center;
+  font-family: georgia,serif;
+}
+p {text-align: center;}
+        </style>
+</head>
+<body>
+	<!-- Declare HTML Elements -->
+		<div class="container" id="container">
+</div>
+	<script src="https://rawgit.com/FremyCompany/css-grid-polyfill/master/bin/css-polyfills.min.js"></script>
+</body>
+<!-- JavaScript file -->
+<footer>
+	<script>
+		// Declaring Variables, change imagesPerRow to specify the number of images per row/line
+		var imagesFolder = "img/img/", imagesExtension = ".jpg", percent = 0;
+		var imagesPerRow = 5, previous = null, next = null, flag = 0, imageCounter = 0, rowCounter = 0;
+
+		// Code to be executed as soon as page loads. Window OnLoad calls onClickFunction Function to list the 
+		// first row and then an Event Listener is added to the Button to listen for button clicks
+		// This Function is called with each button click
+		while (imageCounter < 9)
+		{
+			imageCounter++; // Image Counter
+			rowCounter++; // Row Counter
+
+			// Adding a leading 0 to numbers less than 10 to match image names
+			if(imageCounter.toString().length < 2)
+			{
+				imageCounter = "0" + imageCounter;
+			}
+
+			// Creates an Image Element for each image in the folder & assigns a source and unique ID to each image and specifies how images will be displayed
+			var img = document.createElement("img");
+			img.src = imagesFolder + imageCounter + imagesExtension; 
+			img.id = imageCounter;
+
+			// Calculates how much width each image will be assigned, therefore changing the number of images per row
+			// will not affect the display of the webpage, the 0.2 is to allow space for borders
+
+			// Add Event Listeners for each image
+
+			// Adds each image as a Child Element of the div Parent Element
+			document.getElementById("container").appendChild(img);
+		}
+	</script>
+</footer>
+</html>
